@@ -1,0 +1,16 @@
+name: drupal-votacao
+recipe: drupal10
+config:
+  webroot: app/web
+  php: '8.2'
+services:
+  database:
+    type: mariadb
+    portforward: 3306
+    creds:
+      user: drupal
+      password: drupal
+      database: drupal
+    options:
+      - "--skip-networking=false"
+      - "--bind-address=0.0.0.0"

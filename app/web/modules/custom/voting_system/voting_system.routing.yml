@@ -1,0 +1,64 @@
+voting_system.question_add:
+  path: '/admin/voting-system/question/add'
+  defaults:
+    _form: '\Drupal\voting_system\Form\QuestionForm'
+    _title: 'Add Question'
+  requirements:
+    _permission: 'administer voting system'
+
+voting_system.question_edit:
+  path: '/admin/voting-system/question/{question}/edit'
+  defaults:
+    _form: '\Drupal\voting_system\Form\QuestionEditForm'
+    _title: 'Editar pergunta'
+  requirements:
+    _permission: 'administer voting system'
+
+
+voting_system.answer_add:
+  path: '/admin/voting-system/answer/add'
+  defaults:
+    _form: '\Drupal\voting_system\Form\AnswerForm'
+    _title: 'Adicionar resposta'
+  requirements:
+    _permission: 'administer voting system'
+
+voting_system.question_list:
+  path: '/admin/voting-system/questions'
+  defaults:
+    _controller: '\Drupal\voting_system\Controller\VotingSystemController::listQuestions'
+    _title: 'Perguntas'
+  requirements:
+    _permission: 'administer voting system'
+
+voting_system.vote_page:
+  path: '/admin/voting-system/vote/{question}'
+  defaults:
+    _controller: '\Drupal\voting_system\Controller\VotingSystemController::votePage'
+    _title: 'Vote'
+  requirements:
+    _permission: 'vote on questions'
+  options:
+    parameters:
+      question:
+        type: entity:question
+
+voting_system.submit_vote:
+  path: '/admin/voting-system/vote/{question}/submit'
+  defaults:
+    _controller: '\Drupal\voting_system\Controller\VotingSystemController::submitVote'
+    _title: 'Submit Vote'
+  requirements:
+    _permission: 'vote on questions'
+  options:
+    parameters:
+      question:
+        type: entity:question
+
+voting_system.settings:
+  path: '/admin/config/voting-system'
+  defaults:
+    _form: '\Drupal\voting_system\Form\VotingSystemSettingsForm'
+    _title: 'Voting System Settings'
+  requirements:
+    _permission: 'administer voting system'

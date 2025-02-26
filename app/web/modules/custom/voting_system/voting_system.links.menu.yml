@@ -1,0 +1,25 @@
+voting_system.admin:
+  title: 'Votação'
+  route_name: 'voting_system.question_list'
+  description: 'Manage Perguntas and answers.'
+  parent: 'system.admin'
+  weight: 10
+
+voting_system.question_add:
+  title: 'Adicionar Pergunta'
+  route_name: 'voting_system.question_add'
+  parent: 'voting_system.admin'
+  weight: 0
+
+voting_system.answer_add:
+  title: 'Adicionar resposta'
+  route_name: 'voting_system.answer_add'
+  parent: 'voting_system.admin'
+  weight: 1
+
+voting_system.settings:
+  title: 'Votação Config'
+  description: 'Configure settings for the Voting System module.'
+  route_name: voting_system.settings
+  parent: system.admin
+  weight: 100

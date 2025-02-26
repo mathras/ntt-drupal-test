@@ -1,0 +1,56 @@
+<div class="voting-question">
+  <header class="voting-question-header">
+    <h1>{{ question.label() }}</h1>
+    <p class="question-meta">
+      <strong>ID:</strong> {{ question.id() }} 
+    </p>
+  </header>
+
+  {% if answers is not defined %}
+    <p class="error">Erro: A variável 'answers' não está definida.</p>
+  {% elseif answers is empty %}
+    <p class="warning">Aviso: Nenhuma resposta encontrada para esta pergunta.</p>
+  {% else %}
+    <ul class="voting-answers">
+      {% for answer in answers %}
+        <li class="voting-answer">
+          <div class="answer-content">
+            <h3 class="answer-label">{{ answer.entity.label() }}</h3>
+
+            {% if answer.entity.description is defined and answer.entity.description.value is not empty %}
+              <div class="answer-description">
+                {{ answer.entity.description.value }}
+              </div>
+            {% endif %}
+            {% if answer.image_url is not empty %}
+              <div class="answer-image">
+                <img src="{{ answer.image_url }}" alt="Imagem da resposta">
+              </div>
+            {% endif %}
+          </div>
+          {% if not disable_voting %}
+          <div class="answer-actions">
+            <a href="{{ url('voting_system.submit_vote', {'question': question.id(), 'answer': answer.entity.id()}) }}" class="button">
+              Votar
+            </a>
+          </div>
+          {%endif%}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+{% if show_votes %}
+  <div class="voting-results">
+    <h2>Resultados da Votação</h2>
+    <p><strong>Total de votos:</strong> {{ total_votes }}</p>
+    <ul>
+      {% for answer in answers %}
+        <li>
+          <strong>{{ answer.entity.label() }}:</strong>
+          {{ votes[answer.entity.id()] }} voto(s) - {{ vote_percentages[answer.entity.id()] }}%
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

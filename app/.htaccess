@@ -1,0 +1,6 @@
+# Ativar o módulo de reescrita
+RewriteEngine On
+
+# Redirecionar tudo para web/
+RewriteCond %{REQUEST_URI} !^/web/
+RewriteRule ^(.*)$ web/$1 [L]

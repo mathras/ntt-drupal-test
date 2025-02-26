@@ -1,0 +1,8 @@
+name: 'Voting System'
+type: module
+description: 'Módulo desenvolvido como teste para entrevista... Espero que gostem :)'
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - drupal:rest
+  - drupal:serialization

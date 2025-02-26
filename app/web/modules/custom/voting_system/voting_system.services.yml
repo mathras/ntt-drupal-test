@@ -1,0 +1,12 @@
+services:
+  voting_system.question_list_resource:
+    class: Drupal\voting_system\Plugin\rest\resource\QuestionListResource
+    arguments: ['@config.factory', '@plugin.manager.rest', '@logger.factory']
+    tags:
+      - { name: rest_resource }
+
+  voting_system.question_resource:
+    class: Drupal\voting_system\Plugin\rest\resource\QuestionResource
+    arguments: ['@config.factory', '@plugin.manager.rest', '@logger.factory']
+    tags:
+      - { name: rest_resource }

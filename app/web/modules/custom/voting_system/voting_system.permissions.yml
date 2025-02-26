@@ -1,0 +1,6 @@
+administer voting system:
+  title: 'Administer Voting System'
+  description: 'Allows users to create and manage Perguntas and answers.'
+vote on questions:
+  title: 'Vote on Questions'
+  description: 'Allows users to vote on questions.'

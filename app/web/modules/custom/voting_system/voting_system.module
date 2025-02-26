@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * Main module file for Voting System.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function voting_system_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.voting_system':
+      return '<p>' . t('A voting system.') . '</p>';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function voting_system_theme() {
+  return [
+    'voting_system_question' => [
+      'variables' => [
+        'question' => NULL,
+        'answers' => [],
+        'show_votes' => FALSE,
+        'votes' => [],
+        'disable_voting'=> FALSE,
+        'vote_percentages'=> [],
+        'total_votes' => 0,
+      ],
+      'template' => 'voting-system-question',
+    ],
+  ];
+}
