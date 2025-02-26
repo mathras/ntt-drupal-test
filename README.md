@@ -4,7 +4,7 @@
 
 ### Pré-requisitos:
 - Instale o Lando, uma ferramenta de desenvolvimento local que facilita a configuração e execução do ambiente.
-- Certifique-se de ter o Drupal 9 ou superior instalado.
+- Certifique-se de ter o Drupal 10.
 
 ### Instalação do Repositório:
 ```sh
@@ -19,9 +19,9 @@ lando start
 Isso iniciará o ambiente de desenvolvimento local, configurando o Drupal, o banco de dados e outros serviços necessários.
 
 #### Banco de Dados:
-O banco de dados de exemplo já está incluído na raiz do projeto como `bd.sql`. Após iniciar o Lando, o banco de dados pode ser acessado localmente através do `http://drupal-votacao.lndo.site/` (ou a URL do banco configurada pelo Lando).
+O banco de dados de exemplo já está incluído na raiz do projeto como `bd.sql`. Após iniciar o Lando, o banco de dados pode ser acessado localmente através do `localhost`.
 
-> **Nota:** Em ambiente de produção, o banco de dados deve ser configurado de maneira diferente.
+> **Nota:** Em ambiente de produção, o banco de dados deveria ser configurado de maneira diferente sem proxy.
 
 ## Funcionalidades
 
