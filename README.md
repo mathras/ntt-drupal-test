@@ -1,114 +1,98 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Votação Personalizado para Drupal</title>
-</head>
-<body>
-    <header>
-        <h1>Sistema de Votação Personalizado para Drupal</h1>
-    </header>
+# Sistema de Votacão Personalizado para Drupal
 
-    <section>
-        <h2>Instalação</h2>
-        <p><strong>Pré-requisitos:</strong></p>
-        <ul>
-            <li>Instale o Lando, uma ferramenta de desenvolvimento local, que facilita a configuração e execução do ambiente.</li>
-            <li>Certifique-se de ter o Drupal 9 ou superior instalado.</li>
-        </ul>
+## Instalação
 
-        <p><strong>Instalação do Repositório:</strong></p>
-        <pre><code>git clone https://seurepositorio.com/voting-system.git
-cd voting-system</code></pre>
+### Pré-requisitos:
+- Instale o Lando, uma ferramenta de desenvolvimento local que facilita a configuração e execução do ambiente.
+- Certifique-se de ter o Drupal 9 ou superior instalado.
 
-        <p><strong>Iniciar o Lando:</strong></p>
-        <pre><code>lando start</code></pre>
-        <p>Isso iniciará o ambiente de desenvolvimento local, configurando o Drupal, o banco de dados e outros serviços necessários.</p>
+### Instalação do Repositório:
+```sh
+git clone https://seurepositorio.com/voting-system.git
+cd voting-system
+```
 
-        <h3>Banco de Dados:</h3>
-        <p>O banco de dados de exemplo já está incluído na raiz do projeto como <code>bd.sql</code>. Após iniciar o Lando, o banco de dados pode ser acessado localmente através do <code>http://drupal-votacao.lndo.site/</code> (ou a URL do banco configurada pelo Lando).</p>
-        <p><strong>Nota:</strong> Em ambiente de produção, o banco de dados deve ser configurado de maneira diferente.</p>
-    </section>
+### Iniciar o Lando:
+```sh
+lando start
+```
+Isso iniciará o ambiente de desenvolvimento local, configurando o Drupal, o banco de dados e outros serviços necessários.
 
-    <section>
-        <h2>Funcionalidades</h2>
-        <h3>Módulo Customizado: Voting System</h3>
-        <p>O módulo customizado Voting System já está habilitado e disponível após a instalação. Ele proporciona duas funcionalidades principais através de menus:</p>
-        
-        <h4>Menu de Votação:</h4>
-        <ul>
-            <li>Criar novas perguntas, editar perguntas existentes, visualizar a contagem de votos para cada pergunta e compartilhar links de votação.</li>
-            <li>Visualizar os detalhes de cada pergunta, suas respostas e a quantidade de votos recebidos.</li>
-        </ul>
+#### Banco de Dados:
+O banco de dados de exemplo já está incluído na raiz do projeto como `bd.sql`. Após iniciar o Lando, o banco de dados pode ser acessado localmente através do `http://drupal-votacao.lndo.site/` (ou a URL do banco configurada pelo Lando).
 
-        <h4>Menu de Configuração de Votação:</h4>
-        <ul>
-            <li>Permite desabilitar o sistema de votação globalmente, caso necessário, sem excluir dados ou desinstalar o módulo.</li>
-        </ul>
+> **Nota:** Em ambiente de produção, o banco de dados deve ser configurado de maneira diferente.
 
-        <h3>Como Criar e Gerenciar Perguntas e Respostas:</h3>
-        <ul>
-            <li><strong>Criar uma Pergunta:</strong> Navegue até o menu de "Votação", onde você pode adicionar novas perguntas.</li>
-            <li><strong>Editar uma Pergunta:</strong> As perguntas podem ser editadas diretamente no menu de "Votação".</li>
-            <li><strong>Visualizar Contagem de Votos:</strong> A contagem de votos para cada pergunta pode ser visualizada diretamente no sistema.</li>
-            <li><strong>Compartilhar Links de Votação:</strong> Após criar uma pergunta, você pode gerar e compartilhar links de votação com usuários autenticados.</li>
-        </ul>
-    </section>
+## Funcionalidades
 
-    <section>
-        <h2>API RESTful</h2>
-        <p>A API permite interagir com o sistema de votação programaticamente, usando autenticação básica (Basic Authentication).</p>
+### Módulo Customizado: Voting System
+O módulo customizado **Voting System** já está habilitado e disponível após a instalação. Ele proporciona duas funcionalidades principais através de menus:
 
-        <h3>Autenticação</h3>
-        <p>A API requer autenticação básica. Para testes, use as credenciais abaixo:</p>
-        <ul>
-            <li><strong>Admin:</strong> Usuário: admin / Senha: Admin@123456</li>
-            <li><strong>Usuário convencional:</strong> Usuário: usuario / Senha: Usuario@123456</li>
-        </ul>
-        <p>Para autenticação via cURL, utilize o seguinte formato de header:</p>
-        <pre><code>curl -X GET "http://drupal-votacao.lndo.site/api/voting/questions" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2"</code></pre>
+#### Menu de Votação:
+- Criar novas perguntas, editar perguntas existentes, visualizar a contagem de votos para cada pergunta e compartilhar links de votação.
+- Visualizar os detalhes de cada pergunta, suas respostas e a quantidade de votos recebidos.
 
-        <h3>Endpoints da API</h3>
-        <h4>Perguntas</h4>
-        <p><strong>Listar todas as perguntas:</strong> Método: GET - Rota: /api/voting/questions</p>
-        <pre><code>curl -X GET "http://drupal-votacao.lndo.site/api/voting/questions" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2"</code></pre>
-        <p>Resposta: Retorna uma lista de todas as perguntas.</p>
+#### Menu de Configuração de Votação:
+- Permite desabilitar o sistema de votação globalmente, caso necessário, sem excluir dados ou desinstalar o módulo.
 
-        <p><strong>Detalhes de uma pergunta específica:</strong> Método: GET - Rota: /api/voting/questions/{question_id}</p>
-        <pre><code>curl -X GET "http://drupal-votacao.lndo.site/api/voting/questions/1" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2"</code></pre>
-        <p>Resposta: Retorna os detalhes da pergunta especificada.</p>
+### Como Criar e Gerenciar Perguntas e Respostas:
+- **Criar uma Pergunta:** Navegue até o menu de "Votação", onde você pode adicionar novas perguntas.
+- **Editar uma Pergunta:** As perguntas podem ser editadas diretamente no menu de "Votação".
+- **Visualizar Contagem de Votos:** A contagem de votos para cada pergunta pode ser visualizada diretamente no sistema.
+- **Compartilhar Links de Votação:** Após criar uma pergunta, você pode gerar e compartilhar links de votação com usuários autenticados.
 
-        <p><strong>Criar uma nova pergunta:</strong> Método: POST - Rota: /api/voting/questions</p>
-        <pre><code>curl -X POST "http://drupal-votacao.lndo.site/api/voting/questions" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2" -d '{"label": "Qual é sua cor favorita?"}'</code></pre>
-        <p>Resposta: Retorna os dados da nova pergunta criada.</p>
+## API RESTful
+A API permite interagir com o sistema de votação programaticamente, usando autenticação básica (Basic Authentication).
 
-        <h4>Respostas</h4>
-        <p><strong>Listar todas as respostas de uma pergunta:</strong> Método: GET - Rota: /api/voting/answers/list/{question_id}</p>
-        <pre><code>curl -X GET "http://drupal-votacao.lndo.site/api/voting/answers/list/1" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2"</code></pre>
-        <p>Resposta: Retorna uma lista de respostas associadas à pergunta.</p>
+### Autenticação
+A API requer autenticação básica. Para testes, use as credenciais abaixo:
 
-        <p><strong>Detalhes de uma resposta específica:</strong> Método: GET - Rota: /api/voting/answers/{answer_id}</p>
-        <pre><code>curl -X GET "http://drupal-votacao.lndo.site/api/voting/answers/1" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2"</code></pre>
-        <p>Resposta: Retorna os detalhes da resposta especificada.</p>
+- **Admin:** Usuário: `admin` / Senha: `Admin@123456`
+- **Usuário convencional:** Usuário: `usuario` / Senha: `Usuario@123456`
 
-        <p><strong>Criar uma nova resposta:</strong> Método: POST - Rota: /api/voting/answers</p>
-        <pre><code>curl -X POST "http://drupal-votacao.lndo.site/api/voting/answers" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2" -d '{"label": "Azul", "question_id": 1}'</code></pre>
-        <p>Resposta: Retorna os dados da nova resposta criada.</p>
+Para autenticação via cURL:
+```sh
+curl -X GET "http://drupal-votacao.lndo.site/api/voting/questions" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2"
+```
 
-        <h4>Votos</h4>
-        <p><strong>Criar um novo voto:</strong> Método: POST - Rota: /api/voting/votes</p>
-        <pre><code>curl -X POST "http://drupal-votacao.lndo.site/api/voting/votes" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2" -d '{"user_id": 1, "question_id": 1, "answer_id": 1}'</code></pre>
-        <p>Resposta: Retorna os dados do voto criado.</p>
-    </section>
+### Endpoints da API
 
-    <section>
-        <h2>Como Usar o Sistema</h2>
-        <ul>
-            <li><strong>Acesse o Menu de Votação:</strong> Crie, edite e visualize perguntas e respostas.</li>
-            <li><strong>Compartilhe os Links de Votação:</strong> Permita que os usuários votem em suas perguntas.</li>
-            <li><strong>Use a API para Interagir Programaticamente:</strong> Crie, edite e recupere perguntas, respostas e votos utilizando a API RESTful.</li>
-        </ul>
-    </section>
-</body>
-</html>
+#### Perguntas
+- **Listar todas as perguntas:**
+  ```sh
+  curl -X GET "http://drupal-votacao.lndo.site/api/voting/questions" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2"
+  ```
+- **Detalhes de uma pergunta específica:**
+  ```sh
+  curl -X GET "http://drupal-votacao.lndo.site/api/voting/questions/{question_id}" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2"
+  ```
+- **Criar uma nova pergunta:**
+  ```sh
+  curl -X POST "http://drupal-votacao.lndo.site/api/voting/questions" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2" -d '{"label": "Qual é sua cor favorita?"}'
+  ```
+
+#### Respostas
+- **Listar todas as respostas de uma pergunta:**
+  ```sh
+  curl -X GET "http://drupal-votacao.lndo.site/api/voting/answers/list/{question_id}" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2"
+  ```
+- **Detalhes de uma resposta específica:**
+  ```sh
+  curl -X GET "http://drupal-votacao.lndo.site/api/voting/answers/{answer_id}" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2"
+  ```
+- **Criar uma nova resposta:**
+  ```sh
+  curl -X POST "http://drupal-votacao.lndo.site/api/voting/answers" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2" -d '{"label": "Azul", "question_id": 1}'
+  ```
+
+#### Votos
+- **Criar um novo voto:**
+  ```sh
+  curl -X POST "http://drupal-votacao.lndo.site/api/voting/votes" -H "Authorization: Basic YWRtaW46QWRtaW5AMTIzNDU2" -d '{"user_id": 1, "question_id": 1, "answer_id": 1}'
+  ```
+
+## Como Usar o Sistema
+- **Acesse o Menu de Votação:** Crie, edite e visualize perguntas e respostas.
+- **Compartilhe os Links de Votação:** Permita que os usuários votem em suas perguntas.
+- **Use a API para Interagir Programaticamente:** Crie, edite e recupere perguntas, respostas e votos utilizando a API RESTful.
+
